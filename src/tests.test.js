@@ -1,6 +1,6 @@
-import Ship from "./ship";
-import Cell from "./cell";
-import Gameboard from "./gameboard";
+import Ship from "./ship.js";
+import Cell from "./cell.js";
+import Gameboard from "./gameboard.js";
 
 test("Returns a ship object that matches the example object", () => {
     const example = {
