@@ -8,6 +8,8 @@ export default {
   entry: {
     index: "./src/index.js",
     ship: "./src/ship.js",
+    gameboard: "./src/gameboard.js",
+    cell: "./src/cell.js",
   },
   output: {
     filename: "[name].bundle.js",
