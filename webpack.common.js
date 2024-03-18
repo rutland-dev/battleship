@@ -18,6 +18,7 @@ export default {
       template: "./src/index.html",
       filename: "index.html",
       inject: "body",
+      favicon: "./src/favicon.png"
     }),
   ],
   module: {

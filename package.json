@@ -1,7 +1,7 @@
 {
-  "name": "Jest-Template",
+  "name": "battleship",
   "version": "1.0.0",
-  "description": "Project template using webpack, babel, eslint (airbnb styleguide), prettier, and jest",
+  "description": "JavaScript implementation of the Battleship game. An Odin Project...project.",
   "type": "module",
   "private": true,
   "scripts": {
