@@ -1,9 +1,8 @@
-import Gameboard from "./gameboard.js";
-
 export default class Player {
     constructor(name) {
         this.name = name;
         this.playerNumber = null;
+        this.gameboard = null;
     }
 
     randomAttack(opponentGameboard) {

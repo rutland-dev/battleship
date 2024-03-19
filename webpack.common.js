@@ -6,11 +6,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default {
   entry: {
-    index: "./src/index.js",
+    game: "./src/game.js",
     ship: "./src/ship.js",
     gameboard: "./src/gameboard.js",
     cell: "./src/cell.js",
     player: "./src/player.js",
+    dom: "./src/DOM.js",
   },
   output: {
     filename: "[name].bundle.js",
