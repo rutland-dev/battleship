@@ -10,6 +10,7 @@ export default {
     ship: "./src/ship.js",
     gameboard: "./src/gameboard.js",
     cell: "./src/cell.js",
+    player: "./src/player.js",
   },
   output: {
     filename: "[name].bundle.js",

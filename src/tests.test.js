@@ -1,6 +1,7 @@
 import Ship from "./ship.js";
 import Cell from "./cell.js";
 import Gameboard from "./gameboard.js";
+import Player from "./player.js";
 
 test("Returns a ship object that matches the example object", () => {
     const example = {
@@ -89,4 +90,17 @@ test("Places a ship, sinks it, then checks if all ships are sunk, resulting in t
     gameboard.receiveAttack("C1");
     gameboard.receiveAttack("D1");
     expect(gameboard.checkIfAllSunk()).toBe(true);
+});
+
+test("Makes a random attack, resulting in attacked coordinates isHit === true", () => {
+    const opponentGameboard = new Gameboard;
+    const computerPlayer = new Player("computer");
+    computerPlayer.randomAttack(opponentGameboard);
+    let hitCoordinates;
+    opponentGameboard.grid.forEach(cell => {
+        if(cell.isHit) {
+            hitCoordinates = cell.coordinates;
+        }
+    });
+    expect(opponentGameboard.grid.get(hitCoordinates).isHit).toBe(true);
 });

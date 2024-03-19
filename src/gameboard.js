@@ -84,8 +84,6 @@ export default class Gameboard {
     }
 
     checkIfAllSunk() {
-        console.log(this.sunkShips);
-        console.log(this.shipsInUse);
         if(this.sunkShips.length === this.shipsInUse.length) return true;
         return false;
     }
