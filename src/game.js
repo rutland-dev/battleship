@@ -12,6 +12,11 @@ function startGame() {
     player2.gameboard = new Gameboard(player2);
 
     dom.displayGrid(player2);
+    player2.gameboard.placeShip("Battleship", 4, "B5", "vertical");
+    player2.gameboard.receiveAttack("B5");
+    player2.gameboard.receiveAttack("C5");
+    player2.gameboard.receiveAttack("D5");
+    player2.gameboard.receiveAttack("E5");
 };
 
 window.addEventListener("load", () => {

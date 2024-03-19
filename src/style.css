@@ -81,3 +81,7 @@ body {
     justify-content: flex-end;
     padding-bottom: .3%;
 }
+
+.has-ship {
+    background-color: blue;
+}

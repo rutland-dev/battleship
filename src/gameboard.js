@@ -1,5 +1,6 @@
 import Cell from "./cell.js";
 import Ship from "./ship.js";
+import * as dom from "./DOM.js";
 
 export default class Gameboard {
     constructor(player) {
@@ -77,6 +78,8 @@ export default class Gameboard {
             const cell = this.grid.get(coordinate);
             cell.hasShip = true;
             cell.ship = currentShip;
+            cell.ship.coordinateList = coordinateList;
+            dom.displayShip(coordinate);
         });
 
         this.shipsInUse.push(currentShip);
@@ -104,6 +107,9 @@ export default class Gameboard {
             currentCell.ship.hit();
             if(currentCell.ship.isSunk) {
                 this.sunkShips.push(currentCell.ship);
+                currentCell.ship.coordinateList.forEach(shipCoordinates => {
+                    dom.removeShip(shipCoordinates);
+                });
             }
         }
     }

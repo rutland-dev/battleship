@@ -15,6 +15,18 @@ function displayGrid(player) {
     gridContainer.appendChild(gridDiv);
 }
 
+function displayShip(coordinates) {
+    const cell = document.querySelector(`#${coordinates}`);
+    cell.classList.add("has-ship");
+}
+
+function removeShip(coordinates) {
+    const cell = document.querySelector(`#${coordinates}`);
+    cell.classList.remove("has-ship");
+}
+
 export {
     displayGrid,
+    displayShip,
+    removeShip,
 };
