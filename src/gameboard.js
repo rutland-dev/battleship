@@ -93,7 +93,6 @@ export default class Gameboard {
 
     // Random setup function. Places ships on the grid randomly until all ships are placed.
 
-    // receiveAttack function needs to be able to call the hit function of a ship if present.
     receiveAttack(coordinates) {
         const currentCell = this.grid.get(coordinates);
 
