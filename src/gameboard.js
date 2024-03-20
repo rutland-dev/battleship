@@ -40,7 +40,7 @@ export default class Gameboard {
     }
     // Place ship function. Takes ship name, length, rotation, and coordinates and adds it to the grid.
 
-    placeShip(shipName, shipLength, coordinates, rotation) {
+    placeShip(shipName, shipLength, coordinates, rotation, player) {
         const currentShip = new Ship(shipName, shipLength);
         const coordinateList = [];
         const alpha = coordinates.charAt(0);
@@ -79,7 +79,7 @@ export default class Gameboard {
             cell.hasShip = true;
             cell.ship = currentShip;
             cell.ship.coordinateList = coordinateList;
-            dom.displayShip(coordinate);
+            dom.displayShip(`${player.playerNumber}-${coordinate}`);
         });
 
         this.shipsInUse.push(currentShip);
@@ -102,13 +102,12 @@ export default class Gameboard {
 
         currentCell.isHit = true;
 
+        dom.displayHit(`${this.player.playerNumber}-${coordinates}`);
+
         if(currentCell.hasShip) {
             currentCell.ship.hit();
             if(currentCell.ship.isSunk) {
                 this.sunkShips.push(currentCell.ship);
-                currentCell.ship.coordinateList.forEach(shipCoordinates => {
-                    dom.removeShip(shipCoordinates);
-                });
             }
         }
     }

@@ -19,7 +19,7 @@ function startGame() {
     dom.buildGrid(player1);
     dom.buildGrid(player2);
 
-    player2.gameboard.placeShip("Battleship", 4, "B5", "vertical");
+    player2.gameboard.placeShip("Battleship", 4, "B5", "vertical", player2);
     player2.gameboard.receiveAttack("B5");
     player2.gameboard.receiveAttack("C5");
     

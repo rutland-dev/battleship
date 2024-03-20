@@ -1,3 +1,8 @@
+function displayError(msg) {
+    const errorSpan = document.querySelector("#error-message");
+    errorSpan.textContent = msg;
+}
+
 function buildGrid(player) {
     const gridContainer = document.querySelector(".grid-container");
     const { grid } = player.gameboard;
@@ -8,9 +13,18 @@ function buildGrid(player) {
 
     grid.forEach(cell => {
         const cellDiv = document.createElement("div");
-        cellDiv.setAttribute("id", `${cell.coordinates}`);
+        cellDiv.setAttribute("id", `${player.playerNumber}-${cell.coordinates}`);
         cellDiv.classList.add("cell");
         gridDiv.appendChild(cellDiv);
+
+        cellDiv.addEventListener("click", () => {
+            document.querySelector("#error-message").textContent = "";
+            try {
+                player.gameboard.receiveAttack(cell.coordinates);
+            } catch (error) {
+                displayError(error.message);
+            }
+        });
     });
 
     gridContainer.appendChild(gridDiv);
@@ -36,6 +50,13 @@ function removeShip(coordinates) {
     cell.classList.remove("has-ship");
 }
 
+function displayHit(coordinates) {
+    const cell = document.querySelector(`#${coordinates}`);
+    const hitMark = document.createElement("span");
+    hitMark.classList.add("is-hit");
+    cell.appendChild(hitMark);
+}
+
 function displayTurnInfo(player, opponent) {
     const turnTextSpan = document.querySelector(".turn-text-span");
     turnTextSpan.textContent = player.name;
@@ -54,4 +75,6 @@ export {
     removeShip,
     displayTurnInfo,
     hideGrid,
+    displayHit,
+    displayError,
 };

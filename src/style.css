@@ -39,7 +39,7 @@ body {
     background-color: rgba(0, 0, 0, .8);
     display: grid;
     grid-template-columns: 5% 95%;
-    grid-template-rows: 10% 10% 5% 70%;
+    grid-template-rows: 10% 10% 5% 70% 5%;
 }
 
 .turn-announcement-container {
@@ -107,6 +107,18 @@ body {
     height: 2rem;
     width: 2rem;
     border: black solid 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell:hover {
+    border: darkblue solid 1px;
+}
+
+.error-message {
+    grid-area: 5 / 1 / 6 / 3;
+    color: red;
 }
 
 .footer-container {
@@ -128,6 +140,14 @@ body {
 
 .has-ship {
     background-color: blue;
+}
+
+.is-hit {
+    height: 1rem;
+    width: 1rem;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
 }
 
 .hidden {
