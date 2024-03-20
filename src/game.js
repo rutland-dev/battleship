@@ -4,7 +4,7 @@ import Player from "./player.js";
 import * as dom from "./DOM.js";
 
 function takeTurn(player, opponent) {
-    dom.displayTurnInfo(player);
+    dom.displayTurnInfo(player, opponent);
     dom.hideGrid(player);
     dom.displayGrid(opponent);
 }

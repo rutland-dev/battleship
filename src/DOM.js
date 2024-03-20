@@ -36,9 +36,15 @@ function removeShip(coordinates) {
     cell.classList.remove("has-ship");
 }
 
-function displayTurnInfo(player) {
+function displayTurnInfo(player, opponent) {
     const turnTextSpan = document.querySelector(".turn-text-span");
     turnTextSpan.textContent = player.name;
+
+    const boardInfoContainer = document.querySelector(".board-info-container");
+    const boardInfoText = document.createElement("p");
+    boardInfoText.textContent = `${opponent.name}'s Board`;
+
+    boardInfoContainer.appendChild(boardInfoText);
 }
 
 export {
