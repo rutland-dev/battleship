@@ -1,3 +1,5 @@
+import Explosion from "./explosion.png";
+
 function displayError(msg) {
     const errorSpan = document.querySelector("#error-message");
     errorSpan.textContent = msg;
@@ -58,6 +60,13 @@ function displayHit(coordinates) {
     cell.classList.add("is-hit");
 }
 
+function hitShip(coordinates) {
+    const cell = document.querySelector(`#${coordinates}`);
+    const explosion = new Image();
+    explosion.src = Explosion;
+    cell.appendChild(explosion);
+}
+
 function displayTurnInfo(player, opponent) {
     const turnTextSpan = document.querySelector(".turn-text-span");
     turnTextSpan.textContent = player.name;
@@ -99,12 +108,7 @@ function displayWinner(player) {
     const winnerText = document.createElement("h1");
     winnerText.textContent = `${player.name} Wins!`;
 
-    const playAgainButton = document.createElement("button");
-    playAgainButton.textContent = "Play Again";
-    playAgainButton.addEventListener("click", Promise.resolve(true));
-
     winnerContainer.appendChild(winnerText);
-    winnerContainer.appendChild(playAgainButton);
 
     headerContainer.appendChild(winnerContainer);
 }
@@ -122,4 +126,5 @@ export {
     hideSunkShipsList,
     displaySunkShipsList,
     displayWinner,
+    hitShip,
 };

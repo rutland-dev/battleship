@@ -166,8 +166,9 @@ span.is-hit {
     display: inline-block;
 }
 
-.has-ship.is-hit {
-    background-color: blue;
+img {
+    height: 2rem;
+    width: 2rem;
 }
 
 .winner-container {

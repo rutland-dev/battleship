@@ -141,6 +141,7 @@ export default class Gameboard {
 
         if(currentCell.hasShip) {
             currentCell.ship.hit();
+            dom.hitShip(`${this.player.playerNumber}-${coordinates}`);
             if(currentCell.ship.isSunk) {
                 this.sunkShips.push(currentCell.ship);
                 dom.sinkShip(this.player, currentCell.ship);
