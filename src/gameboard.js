@@ -38,6 +38,7 @@ export default class Gameboard {
         ];
         this.shipsInUse = [];
         this.sunkShips = [];
+        this.triedCoordinates = [];
     }
 
     placeShip(shipName, shipLength, coordinates, rotation) {
@@ -90,12 +91,23 @@ export default class Gameboard {
         if(this.sunkShips.length === this.shipsInUse.length) this.allShipsSunk = true;
     }
 
+    generateRandomCoordinates() {
+        if(this.triedCoordinates.length >= 100) throw Error("All coordinates failed");
+
+        const coordinates = `${this.letterArray[Math.floor((Math.random())* 10)]}${parseInt(Math.floor((Math.random()) * 10), 10) + 1}`;
+        if(this.triedCoordinates.includes(coordinates)) {
+            this.generateRandomCoordinates();
+        }
+
+        return coordinates;
+    }
+
     // Random setup function. Places ships on the grid randomly until all ships are placed.
     randomShipPlacement() {
         const availableShips = this.startingShips;
         while(availableShips.length) {
             const currentShip = availableShips[0];
-            const coordinates = `${this.letterArray[Math.floor((Math.random())* 10) - 1]}${parseInt(Math.floor((Math.random()) * 10), 10) + 1}`;
+            const coordinates = this.generateRandomCoordinates();
             const coinFlip = Math.round(Math.random());
             let rotation;
 
@@ -108,8 +120,10 @@ export default class Gameboard {
             try {
                 this.placeShip(currentShip.name, currentShip.length, coordinates, rotation, this.player);
                 availableShips.shift();
+                this.triedCoordinates.push(coordinates);
             } catch {
                 this.randomShipPlacement();
+                this.triedCoordinates.push(coordinates);
             }
         }
     }

@@ -55,6 +55,7 @@ function displayHit(coordinates) {
     const hitMark = document.createElement("span");
     hitMark.classList.add("is-hit");
     cell.appendChild(hitMark);
+    cell.classList.add("is-hit");
 }
 
 function displayTurnInfo(player, opponent) {
@@ -94,9 +95,16 @@ function displayWinner(player) {
     mainContainer.classList.add("hidden");
     const headerContainer = document.querySelector(".header-container");
     const winnerContainer = document.createElement("div");
+    winnerContainer.classList.add("winner-container");
     const winnerText = document.createElement("h1");
     winnerText.textContent = `${player.name} Wins!`;
+
+    const playAgainButton = document.createElement("button");
+    playAgainButton.textContent = "Play Again";
+    playAgainButton.addEventListener("click", Promise.resolve(true));
+
     winnerContainer.appendChild(winnerText);
+    winnerContainer.appendChild(playAgainButton);
 
     headerContainer.appendChild(winnerContainer);
 }
