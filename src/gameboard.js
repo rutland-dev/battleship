@@ -13,6 +13,7 @@ export default class Gameboard {
                 this.grid.set(coordinates, new Cell(coordinates));
             }
         });
+        this.allShipsSunk = false;
         this.startingShips = [
             {
                 name: "Carrier",
@@ -38,9 +39,8 @@ export default class Gameboard {
         this.shipsInUse = [];
         this.sunkShips = [];
     }
-    // Place ship function. Takes ship name, length, rotation, and coordinates and adds it to the grid.
 
-    placeShip(shipName, shipLength, coordinates, rotation, player) {
+    placeShip(shipName, shipLength, coordinates, rotation) {
         const currentShip = new Ship(shipName, shipLength);
         const coordinateList = [];
         const alpha = coordinates.charAt(0);
@@ -79,7 +79,7 @@ export default class Gameboard {
             cell.hasShip = true;
             cell.ship = currentShip;
             cell.ship.coordinateList = coordinateList;
-            dom.displayShip(`${player.playerNumber}-${coordinate}`);
+            dom.displayShip(`${this.player.playerNumber}-${coordinate}`);
         });
 
         this.shipsInUse.push(currentShip);
@@ -87,11 +87,32 @@ export default class Gameboard {
     }
 
     checkIfAllSunk() {
-        if(this.sunkShips.length === this.shipsInUse.length) return true;
-        return false;
+        if(this.sunkShips.length === this.shipsInUse.length) this.allShipsSunk = true;
     }
 
     // Random setup function. Places ships on the grid randomly until all ships are placed.
+    randomShipPlacement() {
+        const availableShips = this.startingShips;
+        while(availableShips.length) {
+            const currentShip = availableShips[0];
+            const coordinates = `${this.letterArray[Math.floor((Math.random())* 10) - 1]}${parseInt(Math.floor((Math.random()) * 10), 10) + 1}`;
+            const coinFlip = Math.round(Math.random());
+            let rotation;
+
+            if(coinFlip === 0) {
+                rotation = "vertical";
+            } else {
+                rotation = "horizontal";
+            }
+
+            try {
+                this.placeShip(currentShip.name, currentShip.length, coordinates, rotation, this.player);
+                availableShips.shift();
+            } catch {
+                this.randomShipPlacement();
+            }
+        }
+    }
 
     receiveAttack(coordinates) {
         const currentCell = this.grid.get(coordinates);
@@ -108,7 +129,12 @@ export default class Gameboard {
             currentCell.ship.hit();
             if(currentCell.ship.isSunk) {
                 this.sunkShips.push(currentCell.ship);
+                dom.sinkShip(this.player, currentCell.ship);
+                this.checkIfAllSunk();
             }
+        } else {
+            this.player.isTurn = true;
+            this.player.opponent.isTurn = false;
         }
     }
 }

@@ -62,10 +62,43 @@ function displayTurnInfo(player, opponent) {
     turnTextSpan.textContent = player.name;
 
     const boardInfoContainer = document.querySelector(".board-info-container");
+    boardInfoContainer.replaceChildren();
     const boardInfoText = document.createElement("p");
     boardInfoText.textContent = `${opponent.name}'s Board`;
 
     boardInfoContainer.appendChild(boardInfoText);
+}
+
+function sinkShip(player, ship) {
+    const sunkShipContainer = document.querySelector(`#${player.playerNumber}-sunk-ships-container`);
+    const sunkShipList = document.querySelector(`#${player.playerNumber}-sunk-ships-list`);
+    sunkShipContainer.appendChild(sunkShipList);
+
+    const sunkShip = document.createElement("li");
+    sunkShip.textContent = ship.name;
+    sunkShipList.appendChild(sunkShip);
+}
+
+function hideSunkShipsList(player) {
+    const sunkShipContainer = document.querySelector(`#${player.playerNumber}-sunk-ships-container`);
+    sunkShipContainer.classList.add("hidden");
+}
+
+function displaySunkShipsList(player) {
+    const sunkShipContainer = document.querySelector(`#${player.playerNumber}-sunk-ships-container`);
+    sunkShipContainer.classList.remove("hidden");
+}
+
+function displayWinner(player) {
+    const mainContainer = document.querySelector(".main-container");
+    mainContainer.classList.add("hidden");
+    const headerContainer = document.querySelector(".header-container");
+    const winnerContainer = document.createElement("div");
+    const winnerText = document.createElement("h1");
+    winnerText.textContent = `${player.name} Wins!`;
+    winnerContainer.appendChild(winnerText);
+
+    headerContainer.appendChild(winnerContainer);
 }
 
 export {
@@ -77,4 +110,8 @@ export {
     hideGrid,
     displayHit,
     displayError,
+    sinkShip,
+    hideSunkShipsList,
+    displaySunkShipsList,
+    displayWinner,
 };

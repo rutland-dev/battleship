@@ -39,7 +39,7 @@ body {
     background-color: rgba(0, 0, 0, .8);
     display: grid;
     grid-template-columns: 5% 95%;
-    grid-template-rows: 10% 10% 5% 70% 5%;
+    grid-template-rows: 10% 5% 5% 60% 5% 10%;
 }
 
 .turn-announcement-container {
@@ -61,6 +61,7 @@ body {
 }
 
 .grid-container {
+    align-self: center;
     display: flex;
     flex-direction: column;
     height: 80%;
@@ -82,6 +83,7 @@ body {
 }
 
 .row-labels-container {
+    align-self: center;
     font-weight: bold;
     display: grid;
     grid-area: 4 / 1 / 5 / 2;
@@ -119,6 +121,24 @@ body {
 .error-message {
     grid-area: 5 / 1 / 6 / 3;
     color: red;
+}
+
+.sunk-ships-container {
+    grid-area: 6 / 1 / 7 / 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.sunk-ships-container h4 {
+    font-size: 1.4rem;
+}
+
+.player-sunk-ships-container ul {
+    list-style-type: none;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .footer-container {

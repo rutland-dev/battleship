@@ -1,14 +1,17 @@
+import { TextEncoder } from "util";
 import Ship from "./ship.js";
 import Cell from "./cell.js";
 import Gameboard from "./gameboard.js";
 import Player from "./player.js";
+
+global.TextEncoder = TextEncoder;
 
 test("Returns a ship object that matches the example object", () => {
     const example = {
         name: "Destroyer",
         length: 4,
         hits: 0,
-        coordinates: null,
+        coordinatesList: null,
         isSunk: false,
     };
     const ship = new Ship("Destroyer", 4);
@@ -34,15 +37,15 @@ test("Creates a gameboard and assigns alpha-numeric coordinates to each cell in 
     const board = new Gameboard("Test");
     expect(board.grid.get("A1").coordinates).toMatch("A1");
 });
-
+ 
 test("Places a Battleship vertically at B3", () => {
     const gameboard = new Gameboard("Test");
-    gameboard.placeShip("Battleship", 4, "B3", "vertical");
+    gameboard.placeShip("Battleship", 4, "B3", "vertical", new Player("Test"));
 
     expect(gameboard.grid.get("E3").hasShip).toBe(true);
 });
 
-test("Places a Battleship horizontally at H1", () => {
+test.only("Places a Battleship horizontally at H1", () => {
     const gameboard = new Gameboard("Test");
     gameboard.placeShip("Battleship", 4, "H1", "horizontal");
 

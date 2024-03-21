@@ -3,6 +3,8 @@ export default class Player {
         this.name = name;
         this.playerNumber = null;
         this.gameboard = null;
+        this.isTurn = false;
+        this.opponent = null;
     }
 
     randomAttack(opponentGameboard) {
