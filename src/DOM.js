@@ -1,4 +1,9 @@
 import Explosion from "./explosion.png";
+import Battleship from "./Battleship.svg";
+import Carrier from "./Carrier.svg";
+import Cruiser from "./Cruiser.svg";
+import Destroyer from "./Destroyer.svg";
+import Submarine from "./Submarine.svg";
 
 function displayError(msg) {
     const errorSpan = document.querySelector("#error-message");
@@ -42,9 +47,22 @@ function hideGrid(player) {
     grid.classList.add("hidden");
 }
 
-function displayShip(coordinates) {
+function assignShipClass(coordinates) {
     const cell = document.querySelector(`#${coordinates}`);
     cell.classList.add("has-ship");
+}
+
+function displayShip(player, shipName, coordinates, rotation) {
+    const cell = document.querySelector(`#${coordinates}`);
+    cell.classList.add(rotation);
+    const ship = new Image();
+    if(shipName === "Battleship") ship.src = Battleship;
+    if(shipName === "Carrier") ship.src = Carrier;
+    if(shipName === "Destroyer") ship.src = Destroyer;
+    if(shipName === "Submarine") ship.src = Submarine;
+    if(shipName === "Cruiser") ship.src = Cruiser;
+    ship.classList.add(shipName);
+    cell.appendChild(ship);
 }
 
 function removeShip(coordinates) {
@@ -64,6 +82,7 @@ function hitShip(coordinates) {
     const cell = document.querySelector(`#${coordinates}`);
     const explosion = new Image();
     explosion.src = Explosion;
+    explosion.classList.add("explosion");
     cell.appendChild(explosion);
 }
 
@@ -116,7 +135,7 @@ function displayWinner(player) {
 export {
     buildGrid,
     displayGrid,
-    displayShip,
+    assignShipClass,
     removeShip,
     displayTurnInfo,
     hideGrid,
@@ -127,4 +146,5 @@ export {
     displaySunkShipsList,
     displayWinner,
     hitShip,
+    displayShip,
 };

@@ -42,7 +42,7 @@ export default class Gameboard {
     }
 
     placeShip(shipName, shipLength, coordinates, rotation) {
-        const currentShip = new Ship(shipName, shipLength);
+        const currentShip = new Ship(shipName, shipLength, rotation);
         const coordinateList = [];
         const alpha = coordinates.charAt(0);
         const numeric = parseInt(coordinates.charAt(1), 10);
@@ -80,8 +80,10 @@ export default class Gameboard {
             cell.hasShip = true;
             cell.ship = currentShip;
             cell.ship.coordinateList = coordinateList;
-            dom.displayShip(`${this.player.playerNumber}-${coordinate}`);
+            dom.assignShipClass(`${this.player.playerNumber}-${coordinate}`);
         });
+
+        console.log(coordinateList);
 
         this.shipsInUse.push(currentShip);
 
@@ -145,6 +147,7 @@ export default class Gameboard {
             if(currentCell.ship.isSunk) {
                 this.sunkShips.push(currentCell.ship);
                 dom.sinkShip(this.player, currentCell.ship);
+                dom.displayShip(this.player, currentCell.ship.name, `${this.player.playerNumber}-${currentCell.ship.coordinateList[0]}`, currentCell.ship.rotation);
                 this.checkIfAllSunk();
             }
         } else {
