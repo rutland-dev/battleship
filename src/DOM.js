@@ -119,17 +119,17 @@ function displaySunkShipsList(player) {
 }
 
 function displayWinner(player) {
-    const mainContainer = document.querySelector(".main-container");
-    mainContainer.classList.add("hidden");
-    const headerContainer = document.querySelector(".header-container");
-    const winnerContainer = document.createElement("div");
-    winnerContainer.classList.add("winner-container");
-    const winnerText = document.createElement("h1");
-    winnerText.textContent = `${player.name} Wins!`;
+    const gameoverContainer = document.querySelector(".gameover-container");
+    const gameoverTextSpan = document.querySelector(".gameover-text-span");
+    const playAgainButton = document.querySelector(".play-again-button");
 
-    winnerContainer.appendChild(winnerText);
+    gameoverTextSpan.textContent = player.name;
 
-    headerContainer.appendChild(winnerContainer);
+    playAgainButton.addEventListener("click", () => {
+        location.reload();
+    });
+
+    gameoverContainer.classList.remove("hidden");
 }
 
 export {

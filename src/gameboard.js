@@ -149,6 +149,9 @@ export default class Gameboard {
                 dom.sinkShip(this.player, currentCell.ship);
                 dom.displayShip(this.player, currentCell.ship.name, `${this.player.playerNumber}-${currentCell.ship.coordinateList[0]}`, currentCell.ship.rotation);
                 this.checkIfAllSunk();
+                if(this.allShipsSunk) {
+                    dom.displayWinner(this.player);
+                }
             }
         } else {
             this.player.isTurn = true;
