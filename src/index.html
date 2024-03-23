@@ -9,6 +9,32 @@
     <div class="header-container">
         <h1 id="header-text">Battleship!</h1>
     </div>
+    <div class="start-menu-container">
+        <form class="start-menu-form">
+            <div class="player1-menu-container">
+                <label for="player1" class="label">Player 1:</label>
+                <input type="text" name="player1" id="player1-input" class="text-input" required>
+            </div>
+
+            <div class="player2-menu-container">
+                <label for="player2" class="label">Player 2:</label>
+                <p>(leave blank to play the computer)</p>
+                <input type="text" name="player2" id="player2-input" class="text-input">
+            </div>
+
+            <div class="start-menu-button-container">
+                <div class="play-random-container">
+                    <p class="play-random-text">Play using random ship placement</p>
+                    <button type="button" class="play-random-button">Play</button>
+                </div>
+    
+                <div class="play-choose-container">
+                    <p class="play-choose-text">Choose your own ship placement</p>
+                    <button type="button" class="play-choose-button">Play</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="gameover-container hidden">
         <h1 class="gameover-text"><span class="gameover-text-span"></span> Wins!</h1>
         <button type="button" class="play-again-button">Play Again</button>
