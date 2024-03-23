@@ -4,6 +4,7 @@ import Carrier from "./Carrier.svg";
 import Cruiser from "./Cruiser.svg";
 import Destroyer from "./Destroyer.svg";
 import Submarine from "./Submarine.svg";
+import Player from "./player.js";
 
 function displayError(msg) {
     const errorSpan = document.querySelector("#error-message");
@@ -132,6 +133,26 @@ function displayWinner(player) {
     gameoverContainer.classList.remove("hidden");
 }
 
+function startGame(myFunction) {
+    const button = document.querySelector(".play-random-button");
+    const player1Input = document.querySelector("#player1-input");
+    const player2Input = document.querySelector("#player2-input");
+    const startMenuContainer = document.querySelector(".start-menu-container");
+
+    button.addEventListener("click", () => {
+        const player1 = new Player(player1Input.value);
+        let player2;
+        if(player2Input.value === "") {
+            player2 = new Player("Computer");
+        } else {
+            player2 = new Player(player2Input.value);
+        }
+
+        myFunction(player1, player2);
+        startMenuContainer.classList.add("hidden");
+    });
+}
+
 export {
     buildGrid,
     displayGrid,
@@ -147,4 +168,5 @@ export {
     displayWinner,
     hitShip,
     displayShip,
+    startGame,
 };

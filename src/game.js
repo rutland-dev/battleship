@@ -25,11 +25,9 @@ function takeTurn(player1, player2) {
     dom.displaySunkShipsList(opponent);
 }
 
-function startGame() {
-    const player1 = new Player("Josh");
+function startGame(player1, player2, random = true) {
     player1.isTurn = true;
     player1.playerNumber = "player1";
-    const player2 = new Player("Computer");
     player2.playerNumber = "player2";
     player1.opponent = player2;
     player2.opponent = player1;
@@ -38,8 +36,10 @@ function startGame() {
     dom.buildGrid(player1);
     dom.buildGrid(player2);
 
-    player1.gameboard.randomShipPlacement();
-    player2.gameboard.randomShipPlacement();
+    if(random) {
+        player1.gameboard.randomShipPlacement();
+        player2.gameboard.randomShipPlacement();
+    }
 
     window.addEventListener("click", () => {
         takeTurn(player1, player2);
@@ -48,6 +48,7 @@ function startGame() {
     takeTurn(player1, player2);
 }
 
+
 window.addEventListener("load", () => {
-    startGame();
+    dom.startGame(startGame);
 });
