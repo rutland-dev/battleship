@@ -11,7 +11,7 @@ function displayError(msg) {
     errorSpan.textContent = msg;
 }
 
-function buildGrid(player) {
+function buildGrid(player, myFunction, player1, player2) {
     const gridContainer = document.querySelector(".grid-container");
     const { grid } = player.gameboard;
     const gridDiv = document.createElement("div");
@@ -25,17 +25,45 @@ function buildGrid(player) {
         cellDiv.classList.add("cell");
         gridDiv.appendChild(cellDiv);
 
-        cellDiv.addEventListener("click", () => {
+        cellDiv.addEventListener("click", async () => {
             document.querySelector("#error-message").textContent = "";
-            try {
-                player.gameboard.receiveAttack(cell.coordinates);
-            } catch (error) {
-                displayError(error.message);
-            }
+            await player.gameboard.receiveAttack(cell.coordinates);
+            await myFunction(player1, player2);
         });
     });
 
     gridContainer.appendChild(gridDiv);
+}
+
+function hidePassScreen() {
+    const passScreen = document.querySelector(".pass-screen-container");
+
+    passScreen.classList.add("hidden");
+}
+
+function displayPassScreen(player) {
+    const passScreen = document.querySelector(".pass-screen-container");
+    const passTextSpan = document.querySelector(".pass-text-span");
+    const passButton = document.createElement("button");
+    
+    passButton.classList.add("pass-button");
+    passButton.textContent = "Done";
+    passScreen.appendChild(passButton);
+    passButton.addEventListener("click", () => {
+        hidePassScreen();
+        passButton.remove();
+    });
+
+    passTextSpan.textContent = player.name;
+
+    passScreen.classList.remove("hidden");
+}
+
+function displayMissMessage() {
+    const turnText = document.querySelector(".turn-text");
+    const attackText = document.querySelector(".attack-text");
+    turnText.textContent = "Miss!";
+    attackText.textContent = "";
 }
 
 function displayGrid(player) {
@@ -88,8 +116,11 @@ function hitShip(coordinates) {
 }
 
 function displayTurnInfo(player, opponent) {
-    const turnTextSpan = document.querySelector(".turn-text-span");
-    turnTextSpan.textContent = player.name;
+    const turnText = document.querySelector(".turn-text");
+    const attackText = document.querySelector(".attack-text");
+
+    attackText.textContent = "Attack a Square!";
+    turnText.textContent = `${player.name}'s Turn!`;
 
     const boardInfoContainer = document.querySelector(".board-info-container");
     boardInfoContainer.replaceChildren();
@@ -195,6 +226,8 @@ function displayPlaceableShip(player) {
         }
     });
 
+    // Implement drag and drop later
+
     shipFrame.appendChild(ship);
 
 }
@@ -230,4 +263,7 @@ export {
     startGame,
     displayPlaceShipMenu,
     displayPlaceableShip,
+    displayPassScreen,
+    hidePassScreen,
+    displayMissMessage,
 };

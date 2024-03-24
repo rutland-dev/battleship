@@ -1,6 +1,5 @@
 import "./style.css";
 import Gameboard from "./gameboard.js";
-import Player from "./player.js";
 import * as dom from "./DOM.js";
 
 function takeTurn(player1, player2) {
@@ -19,6 +18,7 @@ function takeTurn(player1, player2) {
         opponent = player1;
     }
     dom.displayTurnInfo(player, opponent);
+    dom.displayGrid(opponent);
     dom.hideGrid(player);
     dom.hideSunkShipsList(player);
     dom.displaySunkShipsList(opponent);
@@ -32,22 +32,17 @@ function startGame(player1, player2, random = true) {
     player2.opponent = player1;
     player1.gameboard = new Gameboard(player1);
     player2.gameboard = new Gameboard(player2);
-    dom.buildGrid(player1);
-    dom.buildGrid(player2);
+    dom.buildGrid(player1, takeTurn, player1, player2);
+    dom.buildGrid(player2, takeTurn, player1, player2);
 
     if(random) {
         player1.gameboard.randomShipPlacement();
         player2.gameboard.randomShipPlacement();
-        dom.displayGrid(player2);
     } else {
         dom.displayPlaceShipMenu(player1);
         dom.displayGrid(player1);
     }
 
-    window.addEventListener("click", () => {
-        takeTurn(player1, player2);
-    });
-    
     takeTurn(player1, player2);
 }
 

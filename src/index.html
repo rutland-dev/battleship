@@ -9,6 +9,9 @@
     <div class="header-container">
         <h1 id="header-text">Battleship!</h1>
     </div>
+    <div class="pass-screen-container hidden">
+        <p class="pass-text">Pass the device to <span class="pass-text-span"></span></p>
+    </div>
     <div class="start-menu-container">
         <form class="start-menu-form">
             <div class="player1-menu-container">
@@ -29,8 +32,8 @@
                 </div>
     
                 <div class="play-choose-container">
-                    <p class="play-choose-text">Choose your own ship placement</p>
-                    <button type="button" class="play-choose-button">Play</button>
+                    <p class="play-choose-text">Choose your own ship placement (currently unavailable)</p>
+                    <button type="button" class="play-choose-button" disabled>Play</button>
                 </div>
             </div>
         </form>
@@ -53,8 +56,8 @@
     </div>
     <div class="main-container">
         <div class="turn-announcement-container">
-            <h2 class="turn-text"><span class="turn-text-span"></span>'s Turn!</h2>
-            <h3>Attack a Square!</h3>
+            <h2 class="turn-text"></h2>
+            <h3 class="attack-text"></h3>
         </div>
         <div class="board-info-container">
 

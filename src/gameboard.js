@@ -153,9 +153,17 @@ export default class Gameboard {
                     dom.displayWinner(this.player);
                 }
             }
-        } else {
+            return true;
+        }
+        
+        dom.displayMissMessage();
+        return new Promise((resolve) => {
+            setTimeout(() => {
+            dom.displayPassScreen(this.player);
             this.player.isTurn = true;
             this.player.opponent.isTurn = false;
-        }
+            resolve(false);
+        }, "2000");
+    });
     }
 }
