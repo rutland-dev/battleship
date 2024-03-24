@@ -20,7 +20,6 @@ function takeTurn(player1, player2) {
     }
     dom.displayTurnInfo(player, opponent);
     dom.hideGrid(player);
-    dom.displayGrid(opponent);
     dom.hideSunkShipsList(player);
     dom.displaySunkShipsList(opponent);
 }
@@ -39,8 +38,10 @@ function startGame(player1, player2, random = true) {
     if(random) {
         player1.gameboard.randomShipPlacement();
         player2.gameboard.randomShipPlacement();
+        dom.displayGrid(player2);
     } else {
         dom.displayPlaceShipMenu(player1);
+        dom.displayGrid(player1);
     }
 
     window.addEventListener("click", () => {

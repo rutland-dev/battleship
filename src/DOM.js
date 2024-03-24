@@ -55,7 +55,6 @@ function assignShipClass(coordinates) {
 
 function displayShip(player, shipName, coordinates, rotation) {
     const cell = document.querySelector(`#${coordinates}`);
-    cell.classList.add(rotation);
     const ship = new Image();
     if(shipName === "Battleship") ship.src = Battleship;
     if(shipName === "Carrier") ship.src = Carrier;
@@ -63,6 +62,7 @@ function displayShip(player, shipName, coordinates, rotation) {
     if(shipName === "Submarine") ship.src = Submarine;
     if(shipName === "Cruiser") ship.src = Cruiser;
     ship.classList.add(shipName);
+    cell.classList.add(rotation);
     cell.appendChild(ship);
 }
 
@@ -167,6 +167,38 @@ function startGame(myFunction) {
     });
 }
 
+function displayPlaceableShip(player) {
+    const shipFrame = document.querySelector(".ship-image-frame");
+    const shipName = player.availableShipList.shift().name;
+    const placeShipText = document.querySelector(".place-ship-text");
+    const rotateShipButton = document.querySelector(".rotate-ship-button");
+
+    const ship = new Image();
+    if(shipName === "Battleship") ship.src = Battleship;
+    if(shipName === "Carrier") ship.src = Carrier;
+    if(shipName === "Destroyer") ship.src = Destroyer;
+    if(shipName === "Submarine") ship.src = Submarine;
+    if(shipName === "Cruiser") ship.src = Cruiser;
+
+    ship.classList.add(shipName);
+    shipFrame.classList.add("horizontal");
+
+    placeShipText.textContent = shipName;
+
+    rotateShipButton.addEventListener("click", () => {
+        if(shipFrame.classList.contains("horizontal")) {
+            shipFrame.classList.remove("horizontal");
+            shipFrame.classList.add("vertical");
+        } else {
+            shipFrame.classList.remove("vertical");
+            shipFrame.classList.add("horizontal");
+        }
+    });
+
+    shipFrame.appendChild(ship);
+
+}
+
 function displayPlaceShipMenu(player) {
     const instructionsContainer = document.querySelector(".instructions-container");
     const availableShipsContainer = document.querySelector(".available-ships-container");
@@ -176,6 +208,8 @@ function displayPlaceShipMenu(player) {
 
     instructionsContainer.classList.remove("hidden");
     availableShipsContainer.classList.remove("hidden");
+
+    displayPlaceableShip(player);
 }
 
 export {
@@ -195,4 +229,5 @@ export {
     displayShip,
     startGame,
     displayPlaceShipMenu,
+    displayPlaceableShip,
 };
