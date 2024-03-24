@@ -39,6 +39,8 @@ function startGame(player1, player2, random = true) {
     if(random) {
         player1.gameboard.randomShipPlacement();
         player2.gameboard.randomShipPlacement();
+    } else {
+        dom.displayPlaceShipMenu(player1);
     }
 
     window.addEventListener("click", () => {

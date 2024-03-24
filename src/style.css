@@ -95,7 +95,55 @@ body {
     padding: .2rem;
 }
 
+.instructions-container {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    z-index: 3;
+    background-color: darkblue;
+    color: paleturquoise;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border: 1px solid black;
+    box-shadow: .5rem .5rem 1rem black;
+}
 
+.instructions-player-name {
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
+.instructions-container h1 {
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.available-ships-container {
+    background-color: darkblue;
+    position: absolute;
+    width: 90%;
+    height: 20%;
+    top: 75%;
+    left: 5%;
+    border: 1px solid black;
+    box-shadow: .5rem .5rem 1rem black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ship-image-frame {
+    background-color: rgba(255, 255, 255, .2);
+    border: 2px solid black;
+    height: 8rem;
+    width: 8rem;
+    box-shadow: .2rem .2rem 1rem black;
+}
 
 .gameover-container {
     position: absolute;

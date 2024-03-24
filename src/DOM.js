@@ -134,12 +134,13 @@ function displayWinner(player) {
 }
 
 function startGame(myFunction) {
-    const button = document.querySelector(".play-random-button");
+    const randomButton = document.querySelector(".play-random-button");
+    const chooseButton = document.querySelector(".play-choose-button");
     const player1Input = document.querySelector("#player1-input");
     const player2Input = document.querySelector("#player2-input");
     const startMenuContainer = document.querySelector(".start-menu-container");
 
-    button.addEventListener("click", () => {
+    randomButton.addEventListener("click", () => {
         const player1 = new Player(player1Input.value);
         let player2;
         if(player2Input.value === "") {
@@ -151,6 +152,30 @@ function startGame(myFunction) {
         myFunction(player1, player2);
         startMenuContainer.classList.add("hidden");
     });
+
+    chooseButton.addEventListener("click", () => {
+        const player1 = new Player(player1Input.value);
+        let player2;
+        if(player2Input.value === "") {
+            player2 = new Player("Computer");
+        } else {
+            player2 = new Player(player2Input.value);
+        }
+
+        myFunction(player1, player2, false);
+        startMenuContainer.classList.add("hidden");
+    });
+}
+
+function displayPlaceShipMenu(player) {
+    const instructionsContainer = document.querySelector(".instructions-container");
+    const availableShipsContainer = document.querySelector(".available-ships-container");
+    const instructionsPlayerName = document.querySelector(".instructions-player-name");
+
+    instructionsPlayerName.textContent = player.name;
+
+    instructionsContainer.classList.remove("hidden");
+    availableShipsContainer.classList.remove("hidden");
 }
 
 export {
@@ -169,4 +194,5 @@ export {
     hitShip,
     displayShip,
     startGame,
+    displayPlaceShipMenu,
 };

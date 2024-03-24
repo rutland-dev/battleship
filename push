@@ -1,0 +1,119 @@
+[33mcommit 055d4f584d41b3b98532912fa071cfad51af1b73[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Joshua Rutland <rutland-dev@gmail.com>
+Date:   Sat Mar 23 15:30:18 2024 -0400
+
+    Add naming ability in startGame function
+
+[33mcommit 4cf0837e99871f5caf03adac4b90ea4881b470b4[m
+Author: Joshua Rutland <rutland-dev@gmail.com>
+Date:   Sat Mar 23 14:52:11 2024 -0400
+
+    Complete creation and css layout of start menu
+
+[33mcommit 9bd711547f1568d8f6518b1e6303cc9c52dadd0a[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Joshua Rutland <rutland-dev@gmail.com>
+Date:   Sat Mar 23 14:17:22 2024 -0400
+
+    Complete gameover container and functionality
+
+[33mcommit 6b2bac0b6da99faba10dfc7a7b334df6d732b936[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Fri Mar 22 13:24:07 2024 -0400
+
+    Add ship images and complete css positioning
+
+[33mcommit 79f459eeb0127ef8567fb3975c3ce546b93cf5c4[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Thu Mar 21 17:15:50 2024 -0400
+
+    Add explosion effect to hit ship
+
+[33mcommit 856545311005676b5bcedae01c6b5add80e2dd60[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Thu Mar 21 16:24:54 2024 -0400
+
+    Complete basic game loop
+
+[33mcommit 43c7dc8b39e7a7dd38ed8f68c161dda25dc8e28c[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Thu Mar 21 14:11:14 2024 -0400
+
+    Complete sunkShips list and start on game loop
+
+[33mcommit ac869a8d4314f037cb46de7377b78c8b7ce07c56[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Wed Mar 20 11:38:56 2024 -0400
+
+    Complete event listener to attack squares.
+
+[33mcommit 654a020f888d800ae1ddbf4ca0aef8acb2fdaccd[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Wed Mar 20 10:35:47 2024 -0400
+
+    Complete general layout with info containers
+
+[33mcommit fb9a298b47449a17f391dd2cb4a20605fb58f7d3[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Tue Mar 19 09:53:35 2024 -0400
+
+    Add turn info text display and Gameboard.takeTurn method
+
+[33mcommit dde85688b2e6b860ad1d5b86b8d8bc836df2da10[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Tue Mar 19 09:04:28 2024 -0400
+
+    Complete and test dom.displayShip and dom.removeShip
+
+[33mcommit 88d4803f831007db86ae33bfd7e8f2904e8a310e[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Mon Mar 18 21:10:29 2024 -0400
+
+    Start CSS, complete dom.displayGrid
+
+[33mcommit 898636e8ce3b15187fea0a2c44bb295738b991aa[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Mon Mar 18 20:15:30 2024 -0400
+
+    Complete and test Player class
+
+[33mcommit 9e1f212122cc27518280bda53c6427f2dfa5de58[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Mon Mar 18 18:12:36 2024 -0400
+
+    Change linter settings
+
+[33mcommit af58e7e53b1d0ecb8151166d5d2ebf577fe2e598[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Mon Mar 18 18:05:02 2024 -0400
+
+    Change grid data structure to Map
+
+[33mcommit a4f2796f21a0ea1a8676b15635cc3c7f6dd2eb3a[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Mon Mar 18 16:13:14 2024 -0400
+
+    Complete and test placeShip and receiveAttack
+
+[33mcommit eb56b9d0a87dc821c3f0fbab4d43585763d0d842[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Mon Mar 18 12:14:24 2024 -0400
+
+    Complete and test Cell class
+
+[33mcommit 72da4e7f1923859ace7892c43873f0d031fef6ae[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Mon Mar 18 11:45:24 2024 -0400
+
+    Complete and test Ship class
+
+[33mcommit b5286d7923bb2e1dc8a2662dde274ecf2e63c116[m
+Author: Joshua Rutland <144169110+rutland-dev@users.noreply.github.com>
+Date:   Mon Mar 18 11:26:26 2024 -0400
+
+    Initial setup / add favicon
+
+[33mcommit 136011864af87d7359ee212511c10434278012dd[m
+Author: rutland-dev <144169110+rutland-dev@users.noreply.github.com>
+Date:   Mon Mar 18 11:03:36 2024 -0400
+
+    Initial commit
