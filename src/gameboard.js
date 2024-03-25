@@ -140,18 +140,18 @@ export default class Gameboard {
 
         currentCell.isHit = true;
 
-        dom.displayHit(`${this.player.playerNumber}-${coordinates}`);
+        dom.displayHit(this.player, coordinates);
 
         if(currentCell.hasShip) {
             currentCell.ship.hit();
-            dom.hitShip(`${this.player.playerNumber}-${coordinates}`);
+            dom.hitShip(this.player, coordinates);
             if(currentCell.ship.isSunk) {
                 this.sunkShips.push(currentCell.ship);
                 dom.sinkShip(this.player, currentCell.ship);
                 dom.displayShip(this.player, currentCell.ship.name, `${this.player.playerNumber}-${currentCell.ship.coordinateList[0]}`, currentCell.ship.rotation);
                 this.checkIfAllSunk();
                 if(this.allShipsSunk) {
-                    dom.displayWinner(this.player);
+                    dom.displayWinner(this.player.opponent);
                 }
             }
             return true;
@@ -181,7 +181,6 @@ export default class Gameboard {
        try {
         dom.randomAttack(this.player.playerNumber, coordinates);
         this.triedCoordinates.push(coordinates);
-        console.log("computer has attacked");
        } catch (error) {
         this.triedCoordinates.push(coordinates);
         dom.displayError(error.msg);

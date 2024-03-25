@@ -158,20 +158,32 @@ function removeShip(coordinates) {
     cell.classList.remove("has-ship");
 }
 
-function displayHit(coordinates) {
-    const cell = document.querySelector(`#${coordinates}`);
+function displayHit(player, coordinates) {
+    const cell = document.querySelector(`#${player.playerNumber}-${coordinates}`);
+    const miniCell = document.querySelector(`#${player.playerNumber}-mini-${coordinates}`);
     const hitMark = document.createElement("span");
+    const miniHitMark = document.createElement("span");
+    miniHitMark.classList.add("mini-is-hit");
     hitMark.classList.add("is-hit");
     cell.appendChild(hitMark);
     cell.classList.add("is-hit");
+    miniCell.appendChild(miniHitMark);
 }
 
-function hitShip(coordinates) {
-    const cell = document.querySelector(`#${coordinates}`);
+function hitShip(player, coordinates) {
+    const cell = document.querySelector(`#${player.playerNumber}-${coordinates}`);
+    const miniCell = document.querySelector(`#${player.playerNumber}-mini-${coordinates}`);
+
     const explosion = new Image();
     explosion.src = Explosion;
     explosion.classList.add("explosion");
+
+    const miniExplosion = new Image();
+    miniExplosion.src = Explosion;
+    miniExplosion.classList.add("mini-explosion");
+
     cell.appendChild(explosion);
+    miniCell.appendChild(miniExplosion);
 }
 
 function displayTurnInfo(player, opponent) {
@@ -210,6 +222,7 @@ function displaySunkShipsList(player) {
 }
 
 function displayWinner(player) {
+    console.log(player.name);
     const gameoverContainer = document.querySelector(".gameover-container");
     const gameoverTextSpan = document.querySelector(".gameover-text-span");
     const playAgainButton = document.querySelector(".play-again-button");

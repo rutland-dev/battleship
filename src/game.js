@@ -4,7 +4,6 @@ import * as dom from "./DOM.js";
 
 function takeTurn(player1, player2, random = true) {
     if(player1.gameboard.allShipsSunk || player2.gameboard.allShipsSunk) {
-        dom.displayWinner(player1);
         return;
     }
     
