@@ -19,20 +19,48 @@ function buildGrid(player, myFunction, player1, player2) {
     gridDiv.classList.add("grid");
     gridDiv.classList.add("hidden");
 
+    const miniGridContainer = document.querySelector(".mini-grid-container");
+    const miniGridDiv = document.createElement("div");
+    miniGridDiv.setAttribute("id", `${player.playerNumber}-mini-grid`);
+    miniGridDiv.classList.add("mini-grid");
+    miniGridDiv.classList.add("hidden");
+
     grid.forEach(cell => {
         const cellDiv = document.createElement("div");
+        const miniCellDiv = document.createElement("div");
+
         cellDiv.setAttribute("id", `${player.playerNumber}-${cell.coordinates}`);
         cellDiv.classList.add("cell");
+
+        miniCellDiv.setAttribute("id", `${player.playerNumber}-mini-${cell.coordinates}`);
+        miniCellDiv.classList.add("mini-cell");
+
         gridDiv.appendChild(cellDiv);
+        miniGridDiv.appendChild(miniCellDiv);
 
         cellDiv.addEventListener("click", async () => {
             document.querySelector("#error-message").textContent = "";
-            await player.gameboard.receiveAttack(cell.coordinates);
+            try { 
+                await player.gameboard.receiveAttack(cell.coordinates);
+            } catch(error) {
+                displayError(error.message);
+            }
             await myFunction(player1, player2);
         });
     });
 
     gridContainer.appendChild(gridDiv);
+    miniGridContainer.appendChild(miniGridDiv);
+}
+
+function stopCellClicks() {
+    const grid = document.querySelector(".grid-container");
+    grid.setAttribute("style", "pointer-events: none");
+}
+
+function allowCellClicks() {
+    const grid = document.querySelector(".grid-container");
+    grid.removeAttribute("style");
 }
 
 function hidePassScreen() {
@@ -51,6 +79,7 @@ function displayPassScreen(player) {
     passScreen.appendChild(passButton);
     passButton.addEventListener("click", () => {
         hidePassScreen();
+        allowCellClicks();
         passButton.remove();
     });
 
@@ -68,12 +97,25 @@ function displayMissMessage() {
 
 function displayGrid(player) {
     const grid = document.querySelector(`#${player.playerNumber}-grid`);
+    const miniGrid = document.querySelector(`#${player.playerNumber}-mini-grid`);
+
     grid.classList.remove("hidden");
+
+    if(!miniGrid.classList.contains("hidden")) {
+        miniGrid.classList.add("hidden");
+    }
+
 }
 
 function hideGrid(player) {
     const grid = document.querySelector(`#${player.playerNumber}-grid`);
+    const miniGrid = document.querySelector(`#${player.playerNumber}-mini-grid`);
+
     grid.classList.add("hidden");
+
+    if(miniGrid.classList.contains("hidden")) {
+        miniGrid.classList.remove("hidden");
+    }
 }
 
 function assignShipClass(coordinates) {
@@ -171,6 +213,8 @@ function startGame(myFunction) {
     const player2Input = document.querySelector("#player2-input");
     const startMenuContainer = document.querySelector(".start-menu-container");
 
+    
+
     randomButton.addEventListener("click", () => {
         const player1 = new Player(player1Input.value);
         let player2;
@@ -180,8 +224,8 @@ function startGame(myFunction) {
             player2 = new Player(player2Input.value);
         }
 
-        myFunction(player1, player2);
         startMenuContainer.classList.add("hidden");
+        myFunction(player1, player2);
     });
 
     chooseButton.addEventListener("click", () => {
@@ -245,6 +289,13 @@ function displayPlaceShipMenu(player) {
     displayPlaceableShip(player);
 }
 
+function randomAttack(playerNumber, coordinates) {
+    setTimeout(() => {
+        const cellDiv = document.querySelector(`#${playerNumber}-${coordinates}`);
+        cellDiv.click();
+    }, 500);
+}
+
 export {
     buildGrid,
     displayGrid,
@@ -266,4 +317,6 @@ export {
     displayPassScreen,
     hidePassScreen,
     displayMissMessage,
+    randomAttack,
+    stopCellClicks,
 };

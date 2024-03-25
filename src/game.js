@@ -2,7 +2,7 @@ import "./style.css";
 import Gameboard from "./gameboard.js";
 import * as dom from "./DOM.js";
 
-function takeTurn(player1, player2) {
+function takeTurn(player1, player2, random = true) {
     if(player1.gameboard.allShipsSunk || player2.gameboard.allShipsSunk) {
         dom.displayWinner(player1);
         return;
@@ -22,6 +22,10 @@ function takeTurn(player1, player2) {
     dom.hideGrid(player);
     dom.hideSunkShipsList(player);
     dom.displaySunkShipsList(opponent);
+
+    if(random && player2.isTurn) {
+        player1.gameboard.receiveRandomAttack();
+    }
 }
 
 function startGame(player1, player2, random = true) {

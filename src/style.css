@@ -352,7 +352,6 @@ button:active {
 .vertical .Carrier {
     left: 0;
     top: 4.4rem;
-    background-color: green;
 }
 
 .vertical .Cruiser {
@@ -402,7 +401,21 @@ button:active {
     height: 70%;
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
+}
+
+.mini-grid-container {
+    z-index: -5;
+    position: absolute;
+    display: flex;
+    height: 20%;
+    width: 20%;
+    top: 50%;
+    left: 25%;
+}
+
+.mini-grid {
+    height: 100%;
+    width: 100%;
 }
 
 .footer-container {

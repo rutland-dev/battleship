@@ -83,8 +83,6 @@ export default class Gameboard {
             dom.assignShipClass(`${this.player.playerNumber}-${coordinate}`);
         });
 
-        console.log(coordinateList);
-
         this.shipsInUse.push(currentShip);
 
     }
@@ -128,13 +126,14 @@ export default class Gameboard {
                 this.triedCoordinates.push(coordinates);
             }
         }
+        this.triedCoordinates = [];
     }
 
     receiveAttack(coordinates) {
         const currentCell = this.grid.get(coordinates);
 
         if(currentCell.isHit) {
-            throw Error("This coordinate has already been hit");
+            throw new Error("Coordinate already hit");
         }
 
         currentCell.isHit = true;
@@ -158,6 +157,7 @@ export default class Gameboard {
         
         dom.displayMissMessage();
         return new Promise((resolve) => {
+            dom.stopCellClicks();
             setTimeout(() => {
             dom.displayPassScreen(this.player);
             this.player.isTurn = true;
@@ -165,5 +165,25 @@ export default class Gameboard {
             resolve(false);
         }, "2000");
     });
+    };
+
+    receiveRandomAttack() {
+        const coordinates = this.generateRandomCoordinates();
+        const currentCell = this.grid.get(coordinates);
+
+        if(currentCell.isHit) {
+            this.receiveRandomAttack();
+            return;
+        }
+
+       try {
+        dom.randomAttack(this.player.playerNumber, coordinates);
+        this.triedCoordinates.push(coordinates);
+        console.log("computer has attacked");
+       } catch (error) {
+        this.triedCoordinates.push(coordinates);
+        dom.displayError(error.msg);
+        this.receiveRandomAttack();
+       }
     }
 }
