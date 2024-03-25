@@ -1,3 +1,5 @@
+
+
 * {
 	vertical-align: baseline;
 	font-weight: inherit;
@@ -297,6 +299,8 @@ button:active {
 }
 
 .grid {
+    background-image: url("./water.jpg");
+    background-size: contain;
     display: grid;
     height: min-content;
     width: min-content;
@@ -472,10 +476,11 @@ button:active {
     width: fit-content;
     top: 70%;
     left: 50%;
-    background-color: green;
 }
 
 .mini-grid {
+    background-image: url("./water.jpg");
+    background-size: contain;
     height: 100%;
     width: 100%;
     display: grid;

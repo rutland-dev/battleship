@@ -222,7 +222,6 @@ function displaySunkShipsList(player) {
 }
 
 function displayWinner(player) {
-    console.log(player.name);
     const gameoverContainer = document.querySelector(".gameover-container");
     const gameoverTextSpan = document.querySelector(".gameover-text-span");
     const playAgainButton = document.querySelector(".play-again-button");
