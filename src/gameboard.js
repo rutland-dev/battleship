@@ -80,10 +80,12 @@ export default class Gameboard {
             cell.hasShip = true;
             cell.ship = currentShip;
             cell.ship.coordinateList = coordinateList;
-            dom.assignShipClass(`${this.player.playerNumber}-${coordinate}`);
+            dom.assignShipClass(this.player, coordinate);
         });
 
         this.shipsInUse.push(currentShip);
+
+        dom.displayMiniShip(this.player, currentShip.name, currentShip.coordinateList[0], rotation);
 
     }
 

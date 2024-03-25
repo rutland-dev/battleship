@@ -23,9 +23,9 @@ function takeTurn(player1, player2, random = true) {
     dom.hideSunkShipsList(player);
     dom.displaySunkShipsList(opponent);
 
-    if(random && player2.isTurn) {
-        player1.gameboard.receiveRandomAttack();
-    }
+    // if(random && player2.isTurn) {
+    //     player1.gameboard.receiveRandomAttack();
+    // }
 }
 
 function startGame(player1, player2, random = true) {

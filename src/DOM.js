@@ -118,9 +118,26 @@ function hideGrid(player) {
     }
 }
 
-function assignShipClass(coordinates) {
-    const cell = document.querySelector(`#${coordinates}`);
+function assignShipClass(player, coordinates) {
+    const cell = document.querySelector(`#${player.playerNumber}-${coordinates}`);
     cell.classList.add("has-ship");
+}
+
+function displayMiniShip(player, shipName, coordinates, rotation) {
+    const miniCell = document.querySelector(`#${player.playerNumber}-mini-${coordinates}`);
+    const miniShip = new Image();
+
+    if(shipName === "Battleship") miniShip.src = Battleship;
+    if(shipName === "Carrier") miniShip.src = Carrier;
+    if(shipName === "Destroyer") miniShip.src = Destroyer;
+    if(shipName === "Submarine") miniShip.src = Submarine;
+    if(shipName === "Cruiser") miniShip.src = Cruiser;
+
+    miniShip.classList.add(shipName);
+    miniShip.classList.add(rotation);
+    miniShip.classList.add("mini-ship");
+
+    miniCell.appendChild(miniShip);
 }
 
 function displayShip(player, shipName, coordinates, rotation) {
@@ -319,4 +336,5 @@ export {
     displayMissMessage,
     randomAttack,
     stopCellClicks,
+    displayMiniShip,
 };
