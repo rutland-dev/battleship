@@ -42,6 +42,7 @@ export default class Gameboard {
     }
 
     placeShip(shipName, shipLength, coordinates, rotation) {
+        // Creates a new ship
         const currentShip = new Ship(shipName, shipLength, rotation);
         const coordinateList = [];
         const alpha = coordinates.charAt(0);
@@ -55,7 +56,7 @@ export default class Gameboard {
             }
 
             for(let i = 0; i < currentShip.length; i += 1) {
-                coordinateList.push(`${this.letterArray[startingIndex]}${numeric}`);
+                currentShip.coordinateList.push(`${this.letterArray[startingIndex]}${numeric}`);
                 startingIndex += 1;
             }
 
@@ -65,21 +66,21 @@ export default class Gameboard {
             }
             
             for(let i = numeric; i < currentShip.length + numeric; i += 1) {
-                coordinateList.push(`${alpha}${i}`);
+                currentShip.coordinateList.push(`${alpha}${i}`);
             }
         }
 
-        coordinateList.forEach(coordinate => {
+        currentShip.coordinateList.forEach(coordinate => {
             if(this.grid.get(coordinate).hasShip) {
                 throw Error("Ship placement overlaps another ship");
             }
         });
 
-        coordinateList.forEach(coordinate => {
+        currentShip.coordinateList.forEach(coordinate => {
             const cell = this.grid.get(coordinate);
             cell.hasShip = true;
             cell.ship = currentShip;
-            cell.ship.coordinateList = coordinateList;
+            // cell.ship.currentShip.coordinateList = coordinateList;
             dom.assignShipClass(this.player, coordinate);
         });
 
