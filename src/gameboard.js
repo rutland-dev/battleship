@@ -44,7 +44,6 @@ export default class Gameboard {
     placeShip(shipName, shipLength, coordinates, rotation) {
         // Creates a new ship
         const currentShip = new Ship(shipName, shipLength, rotation);
-        const coordinateList = [];
         const alpha = coordinates.charAt(0);
         const numeric = parseInt(coordinates.charAt(1), 10);
 
@@ -80,7 +79,6 @@ export default class Gameboard {
             const cell = this.grid.get(coordinate);
             cell.hasShip = true;
             cell.ship = currentShip;
-            // cell.ship.currentShip.coordinateList = coordinateList;
             dom.assignShipClass(this.player, coordinate);
         });
 
@@ -112,13 +110,15 @@ export default class Gameboard {
             const currentShip = availableShips[0];
             const coordinates = this.generateRandomCoordinates();
             const coinFlip = Math.round(Math.random());
-            let rotation;
+            // let rotation;
 
-            if(coinFlip === 0) {
-                rotation = "vertical";
-            } else {
-                rotation = "horizontal";
-            }
+            const rotation = coinFlip ? "horizontal" : "vertical";
+
+            // if(coinFlip === 0) {
+            //     rotation = "vertical";
+            // } else {
+            //     rotation = "horizontal";
+            // }
 
             try {
                 this.placeShip(currentShip.name, currentShip.length, coordinates, rotation, this.player);
