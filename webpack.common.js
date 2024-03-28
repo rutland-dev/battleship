@@ -14,7 +14,7 @@ export default {
     dom: "./src/DOM.js",
   },
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name].bundle.[contenthash].js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },

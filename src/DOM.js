@@ -99,7 +99,9 @@ function displayGrid(player) {
     const grid = document.querySelector(`#${player.playerNumber}-grid`);
     const miniGrid = document.querySelector(`#${player.playerNumber}-mini-grid`);
 
-    grid.classList.remove("hidden");
+    if(grid.classList.contains("hidden")) {
+        grid.classList.remove("hidden");
+    }
 
     if(!miniGrid.classList.contains("hidden")) {
         miniGrid.classList.add("hidden");
@@ -111,7 +113,9 @@ function hideGrid(player) {
     const grid = document.querySelector(`#${player.playerNumber}-grid`);
     const miniGrid = document.querySelector(`#${player.playerNumber}-mini-grid`);
 
-    grid.classList.add("hidden");
+    if(!grid.classList.contains("hidden")) {
+        grid.classList.add("hidden");
+    }
 
     if(miniGrid.classList.contains("hidden")) {
         miniGrid.classList.remove("hidden");
@@ -348,5 +352,6 @@ export {
     displayMissMessage,
     randomAttack,
     stopCellClicks,
+    allowCellClicks,
     displayMiniShip,
 };

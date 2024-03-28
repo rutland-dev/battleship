@@ -6,25 +6,29 @@ function takeTurn(player1, player2, random = true) {
     if(player1.gameboard.allShipsSunk || player2.gameboard.allShipsSunk) {
         return;
     }
-    
-    let player;
-    let opponent;
-    if(player1.isTurn) {
-        player = player1;
-        opponent= player2;
-    } else {
-        player = player2;
-        opponent = player1;
-    }
-    dom.displayTurnInfo(player, opponent);
-    dom.displayGrid(opponent);
-    dom.hideGrid(player);
-    dom.hideSunkShipsList(player);
-    dom.displaySunkShipsList(opponent);
 
-    // if(random && player2.isTurn) {
-    //     player1.gameboard.receiveRandomAttack();
-    // }
+    if(player1.isTurn) {
+        dom.displayTurnInfo(player1, player2);
+        dom.displayGrid(player2);
+        dom.hideGrid(player1);
+        dom.hideSunkShipsList(player1);
+        dom.displaySunkShipsList(player2);
+    }
+
+    if(player2.isTurn) {
+        if(player2.name === "Computer") {
+            dom.displayTurnInfo(player2, player1);
+            player1.gameboard.receiveRandomAttack();
+        }
+
+        if(player2.name !== "Computer") {
+            dom.displayTurnInfo(player2, player1);
+            dom.displayGrid(player1);
+            dom.hideGrid(player2);
+            dom.hideSunkShipsList(player2);
+            dom.displaySunkShipsList(player1);
+        }
+    }
 }
 
 function startGame(player1, player2, random = true) {

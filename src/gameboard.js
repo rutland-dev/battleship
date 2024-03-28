@@ -42,7 +42,6 @@ export default class Gameboard {
     }
 
     placeShip(shipName, shipLength, coordinates, rotation) {
-        // Creates a new ship
         const currentShip = new Ship(shipName, shipLength, rotation);
         const alpha = coordinates.charAt(0);
         const numeric = parseInt(coordinates.charAt(1), 10);
@@ -103,22 +102,13 @@ export default class Gameboard {
         return coordinates;
     }
 
-    // Random setup function. Places ships on the grid randomly until all ships are placed.
     randomShipPlacement() {
         const availableShips = this.startingShips;
         while(availableShips.length) {
             const currentShip = availableShips[0];
             const coordinates = this.generateRandomCoordinates();
-            const coinFlip = Math.round(Math.random());
-            // let rotation;
 
-            const rotation = coinFlip ? "horizontal" : "vertical";
-
-            // if(coinFlip === 0) {
-            //     rotation = "vertical";
-            // } else {
-            //     rotation = "horizontal";
-            // }
+            const rotation = Math.round(Math.random()) ? "horizontal" : "vertical";
 
             try {
                 this.placeShip(currentShip.name, currentShip.length, coordinates, rotation, this.player);
@@ -162,10 +152,13 @@ export default class Gameboard {
         return new Promise((resolve) => {
             dom.stopCellClicks();
             setTimeout(() => {
-            dom.displayPassScreen(this.player);
-            this.player.isTurn = true;
-            this.player.opponent.isTurn = false;
-            resolve(false);
+                if(this.player.name !== "Computer" && !this.player.opponent.name !== "Computer") {
+                    dom.displayPassScreen(this.player);
+                }
+                this.player.isTurn = true;
+                this.player.opponent.isTurn = false;
+                resolve(false);
+                dom.allowCellClicks();
         }, "2000");
     });
     };
