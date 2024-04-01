@@ -152,18 +152,19 @@ export default class Gameboard {
         return new Promise((resolve) => {
             dom.stopCellClicks();
             setTimeout(() => {
-                if(this.player.name !== "Computer" && !this.player.opponent.name !== "Computer") {
+                if(this.player.name !== "Computer" && this.player.opponent.name !== "Computer") {
                     dom.displayPassScreen(this.player);
                 }
                 this.player.isTurn = true;
                 this.player.opponent.isTurn = false;
                 resolve(false);
                 dom.allowCellClicks();
+                dom.displayTurnInfo(this.player, this.player.opponent);
         }, "2000");
     });
     };
 
-    receiveRandomAttack() {
+    async receiveRandomAttack() {
         const coordinates = this.generateRandomCoordinates();
         const currentCell = this.grid.get(coordinates);
 
@@ -173,7 +174,9 @@ export default class Gameboard {
         }
 
        try {
-        dom.randomAttack(this.player.playerNumber, coordinates);
+        if(await this.receiveAttack(coordinates)) {
+            this.receiveAttack(this.generateRandomCoordinates());
+        };
         this.triedCoordinates.push(coordinates);
        } catch (error) {
         this.triedCoordinates.push(coordinates);

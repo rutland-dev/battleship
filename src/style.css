@@ -132,6 +132,7 @@ body {
 .available-ships-container {
     background-color: darkblue;
     position: absolute;
+    z-index: 10;
     width: 90%;
     height: 23%;
     top: 74%;
