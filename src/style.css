@@ -14,6 +14,11 @@
 
 :root {
     --mini-cell-size: 1rem;
+    --dark-blue: #0B2447;
+    --medium-blue: #19376d;
+    --purple: #576CBC;
+    --light-blue: #A5D7E8;
+    --main-container-color: rgba(0, 0 , 0, .8);
 }
 
 a {
@@ -27,7 +32,7 @@ body {
 }
 
 .header-container {
-    background-color: rgba(0, 0, 255, .9);
+    background-color: var(--medium-blue);
     height: 15%;
     width: 100%;
     display: flex;
@@ -46,7 +51,7 @@ body {
     width: 90%;
     top: 12%;
     left: 5%;
-    background-color: darkblue;
+    background-color: var(--medium-blue);
     border: 1px solid black;
     box-shadow: .5rem .5rem 1rem black;
     display: flex;
@@ -78,7 +83,7 @@ body {
 }
 
 .start-menu-form p {
-    color: paleturquoise;
+    color: var(--light-blue);
 }
 
 .start-menu-button-container {
@@ -107,8 +112,8 @@ body {
     left: 5%;
     width: 90%;
     z-index: 3;
-    background-color: darkblue;
-    color: paleturquoise;
+    background-color: var(--medium-blue);
+    color: var(--light-blue);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,7 +135,7 @@ body {
 }
 
 .available-ships-container {
-    background-color: darkblue;
+    background-color: var(--medium-blue);
     position: absolute;
     z-index: 10;
     width: 90%;
@@ -175,24 +180,25 @@ body {
 
 .gameover-container {
     position: absolute;
-    z-index: 3;
+    z-index: 100;
     height: 50%;
     width: 90%;
     left: 5%;
     top: 20%;
-    background-color: darkblue;
+    background-color: var(--medium-blue);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10%;
     border: 1px black solid;
+    box-shadow: .2rem .2rem 1rem black;
 }
 
 .gameover-text {
     font-weight: bold;
     font-size: 2.3rem;
-    color: paleturquoise;
+    color: var(--light-blue);
 }
 
 button {
@@ -203,7 +209,7 @@ button {
   border-radius: 6px;
   box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
   box-sizing: border-box;
-  color: #fff;
+  color: var(--light-blue);
   cursor: pointer;
   display: inline-flex;
   height: 48px;
@@ -223,6 +229,7 @@ button {
   white-space: nowrap;
   will-change: box-shadow,transform;
   font-size: 18px;
+  font-weight: bold;
 }
 
 button:focus {
@@ -242,7 +249,7 @@ button:active {
 .main-container {
     height: 77%;
     width: 100%;
-    background-color: rgba(0, 0, 0, .8);
+    background-color: var(--main-container-color);
     display: grid;
     grid-template-columns: 5% 95%;
     grid-template-rows: 8% 5% 5% 55% 1.7% 25%;
@@ -442,7 +449,7 @@ button:active {
     display: flex;
     grid-area: 6 / 1 / 7 / 3;
     color: red;
-    justify-content: center;
+    justify-content: start;
     align-self: end;
     font-size: .85rem;
 }
@@ -499,7 +506,8 @@ button:active {
 }
 
 .footer-container {
-    background-color: rgba(0, 0, 255, .9);
+    background-color: var(--medium-blue);
+    font-size: .8rem;
     height: 8%;
     display: flex;
     align-items: flex-end;
@@ -519,7 +527,7 @@ button:active {
     z-index: 100;
     position: absolute;
     top: 0;
-    background-color: darkblue;
+    background-color: var(--medium-blue);
     height: 100vh;
     width: 100vw;
     display: flex;
